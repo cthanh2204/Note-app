@@ -31,4 +31,12 @@
 
 ## Demo 
 
+<p>If you don't want to sign up, you can log in with this account</p>
+
+
+```bash
+  user: testuser@test.com
+  password: test
+```
+
 [note-app-five-smoky.vercel.app](https://note-app-five-smoky.vercel.app)
