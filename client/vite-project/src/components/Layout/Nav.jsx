@@ -11,7 +11,6 @@ const Nav = ({ userInfo, setUserInfo, onSearchNote }) => {
     localStorage.clear();
     setUserInfo(null);
   };
-  console.log(search);
 
   return (
     <div className="bg-sky-500/100 py-2">

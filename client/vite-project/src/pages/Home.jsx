@@ -45,7 +45,7 @@ const Home = () => {
     }
     try {
       const { data } = await axios.get(
-        "http://localhost:5000/api/auth/get-user",
+        "https://note-app-ocmb.onrender.com/api/auth/get-user",
         {
           headers: {
             Authorization: "Bearer " + token,
@@ -76,9 +76,11 @@ const Home = () => {
 
   const handleDelete = async (note) => {
     try {
-      await axiosInstance.delete(`/api/note/delete-note/${note._id}`);
-      getAllNotes();
-      showToastMessage("Delete successfull");
+      if (confirm("Are you sure want to delete this notes ?")) {
+        await axiosInstance.delete(`/api/note/delete-note/${note._id}`);
+        getAllNotes();
+        showToastMessage("Delete successfull");
+      }
     } catch (error) {
       showToastMessage(error);
       console.log(error);
@@ -98,12 +100,13 @@ const Home = () => {
 
   const updatePinned = async (note) => {
     try {
-      await axiosInstance.put(`/api/note/update-note-pinned/${note._id}`, {
-        isPinned: !note.isPinned,
-      });
-      showToastMessage("Note updated successfull");
-
-      getAllNotes();
+      if (confirm("Are you sure want to update")) {
+        await axiosInstance.put(`/api/note/update-note-pinned/${note._id}`, {
+          isPinned: !note.isPinned,
+        });
+        getAllNotes();
+        showToastMessage("Note updated successfull");
+      }
     } catch (error) {
       if (
         error.response &&
@@ -116,10 +119,11 @@ const Home = () => {
   };
   useEffect(() => {
     getUserInfo();
-    getAllNotes();
-    return () => {};
   }, []);
 
+  useEffect(() => {
+    getAllNotes();
+  }, []);
   return (
     <>
       <Nav

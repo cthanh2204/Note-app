@@ -25,7 +25,6 @@ const TagInput = ({ tags, setTags }) => {
     setTags(tags.filter((tag) => tag !== tagRemove));
   };
 
-  console.log(inputValue);
   return (
     <div>
       {tags?.length > 0 && (
